@@ -3,8 +3,11 @@ import { Dropdown, Button } from 'semantic-ui-react'
 import { addSurvey } from '../../actions/survey'
 
 import Input from '../../component/Input'
-import RadioGender from '../../component/Input/GroupRadio'
+import GroupRadio from '../../component/Input/GroupRadio'
+import CustomDropDown from '../../component/Input/DropDown'
 import './style.css'
+import MultiSelectDropDown from '../../component/Input/MultiValueSelect'
+import CustomButton from '../../component/Button'
 
 
 const edLvloptions = [
@@ -34,12 +37,6 @@ function AddPosts() {
 
 
   const handleOnClick = async () => {
-    console.log(name)
-    console.log(email)
-    console.log(number)
-    console.log(gender)
-    console.log(education)
-
     setLoading(true)
     try {
       const response = await addSurvey({
@@ -48,7 +45,7 @@ function AddPosts() {
         number,
         gender,
         education,
-        skill
+        skill: skill
       })
       const { data, error, message } = response
       setLoading(false)
@@ -68,16 +65,16 @@ function AddPosts() {
   }
 
 
-  const handleMultiSelect = (value ) => {
+  const handleMultiSelect = (value) => {
     console.log(skill)
     console.log(value)
 
-    const isAny  = skill.filter((item)=> item === value)
-    if(isAny[0]){
+    const isAny = skill.filter((item) => item === value)
+    if (isAny[0]) {
       console.log("FIND")
-      setskill(skill.filter((item)=> item !== value))
-    }else{
-      setskill([...skill,value])
+      setskill(skill.filter((item) => item !== value))
+    } else {
+      setskill([...skill, value])
     }
   }
 
@@ -85,28 +82,34 @@ function AddPosts() {
     <div className="survey-box">
       {loading && <h2>Loading</h2>}
       {isErorr && <h2>errorMessage</h2>}
-      <Input type='text' label="Name" width="80%" margin="10px auto" name="name" value={name} handleOnChange={setName} />
-      <Input type='text' label="Email" width="80%" margin="10px auto" name="email" value={email} handleOnChange={setemail} />
-      <Input type='number' label="Number" width="80%" margin="10px auto" name="name" value={number} handleOnChange={setnumber} />
-      <Dropdown text="education level" fluid options={[
+      <Input type='text' label="Name" name="name" value={name} handleOnChange={setName} />
+      <Input type='text' label="Email" name="email" value={email} handleOnChange={setemail} />
+      <Input type='number' label="Number" name="name" value={number} handleOnChange={setnumber} />
+      <CustomDropDown label="Education Level" options={[
         { key: 'type_1', text: 'big', value: 'big' },
         { key: 'type_2', text: 'small', value: 'small' },
         { key: 'type_3', text: 'mid', value: 'mid' }
-      ]} selection onChange={({ value }) => seteducation(value)} />
+      ]}
+        handleOnChange={(e) => seteducation(e.target.value)}
+      />
+      <MultiSelectDropDown
+        options={[
+          { value: 'big', target: "big" },
+          { value: 'small', target: "small" },
+          { value: 'mid', target: "mid" }
+        ]}
+        handleOnChange={(data) => setskill(data)}
+      />
+      <GroupRadio
+        options={[
+          { value: 'Male', text: "Male" },
+          { value: 'Female', text: "Female" },
+          { value: 'Shuu', text: "shuu" }
+        ]}
+        label="Gender"
+        handleChange={(gender) => setgender(gender)} />
 
-      {/* <Dropdown text="skills level" fluid options={[
-        { key: 11, text: 'react', value: 'react' },
-        { key: 22, text: 'node', value: 'node' },
-        { key: 33, text: 'typescript', value: 'typescript' },
-      ]} selection onChange={({ value }) => console.log(value)} /> */}
-          {JSON.stringify(skill)}
-          <select value={skill} onChange={(e)=>handleMultiSelect(e.target.value)}>
-            <option value="react">react</option>
-            <option value="node">node</option>          
-          </select>
-      <RadioGender setgender={(gender) => setgender(gender)} />
-
-      <Button content='Submit' onClick={() => handleOnClick()} />
+      <CustomButton text='Submit' handleOnClick={() => handleOnClick()} />
     </div>
   );
 }

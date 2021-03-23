@@ -21,7 +21,9 @@ function ViewPosts() {
       setLoading(false)
       if(!error){
         console.log(data)
+        data.sort((a,b) => b.id - a.id);
         setdata(data)
+
         setisErorr(false)
       }else{
         setisErorr(true)
@@ -34,6 +36,7 @@ function ViewPosts() {
   return (
     <div className="App">
       <h1>Showing posts</h1>
+      
             {!loading && data && data.map(item => <SurveyBox key={item.id} {...item}/> )}
     </div>
   );

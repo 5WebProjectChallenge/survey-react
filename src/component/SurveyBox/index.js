@@ -22,7 +22,7 @@ function SurveyBox({name,number,educationLevel,gender,skills}) {
             <b>Gender :</b> {gender} 
        </span>
         <span>
-            <b>Skills :</b> {skills} 
+            <b>Skills :</b> {JSON.stringify(skills)} 
        </span>
     </span>
   );

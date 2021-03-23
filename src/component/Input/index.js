@@ -1,42 +1,34 @@
+import { TextField } from '@material-ui/core';
 import React from 'react';
 
 import './style.css'
 
 const Input = ({ 
         label, 
-        value,
-        textAlign, 
+        value, 
         padding, 
-        margin, 
-        fs, 
+        margin="20px auto", 
         name,
-        width,
-        readOnly=true,
+        width="80%",
         type='text',
-        handleOnChange=()=>undefined,
-        setActiveInput=()=>undefined
+        handleOnChange=()=>undefined
      }) => (
-    <div 
-        className="input-tag" 
+    <div  
         style={{ 
             padding: padding, 
             margin: margin, 
-            fontSize: fs, 
-            textAlign: textAlign, 
             width: width
         }}>
-		<label style={{textAlign:"left !important"}}>{label} </label>
-		<input
-            type={type}
-            value={value}
-            name={name}
-            onChange={(e)=>handleOnChange(e.target.value)}
-            onFocus={()=>setActiveInput(name)}
-			style={{ 
-                fontSize: fs, 
-                width: '100%',
-             }}
-		/>
+        <TextField
+          className="input-tag"
+          id="outlined-textarea"
+          label={label}
+          width='900px'
+          type={type}
+          value={value}
+          onChange={(e)=>handleOnChange(e.target.value)}
+          variant="outlined"
+        />
 	</div>
 );
 

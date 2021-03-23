@@ -1,11 +1,12 @@
+import { Button } from '@material-ui/core';
 import React from 'react'
 
-function Button({text,handleOnClick}) {
+const CustomButton = ({text,handleOnClick}) => {
   return (
-    <span className="App" onClick={()=>handleOnClick()}>
-        {text}
-    </span>
+    <div style={{width:"80%",margin:"30px auto"}}>
+      <Button color="primary" onClick={()=>handleOnClick()}>{text}</Button>
+    </div>
   );
 }
 
-export default Button;
+export default CustomButton;
