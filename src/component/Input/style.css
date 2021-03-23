@@ -1,0 +1,7 @@
+.input-tag input{
+    height: 50px;
+    border-width: 0px;
+    border-radius: 10px;
+    margin: 10px 0;
+    background-color: #bbb;
+}

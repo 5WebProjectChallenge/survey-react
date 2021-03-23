@@ -1,0 +1,15 @@
+.navBar{
+    display: flex;
+    flex-direction: row;
+    padding: 10px;
+    background-color: #eee;
+}
+
+.navBar span {
+    min-width: 100px;
+
+}
+.navBar span a{
+    text-decoration: none;
+    color: #000;
+}
