@@ -4,6 +4,8 @@ import { addSurvey } from '../../actions/survey'
 
 import Input from '../../component/Input'
 import RadioGender from '../../component/Input/GroupRadio'
+import './style.css'
+
 
 const edLvloptions = [
   { key: 11, text: 'mid', value: 'mid' },
@@ -64,7 +66,7 @@ function AddPosts() {
     }
   }
   return (
-    <div className="App">
+    <div className="survey-box">
       {loading && <h2>Loading</h2>}
       {isErorr && <h2>errorMessage</h2>}
       <Input type='text' label="Name" width="80%" margin="10px auto" name="name" value={name} handleOnChange={setName} />
