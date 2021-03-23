@@ -29,6 +29,7 @@ function AddPosts() {
   const [email, setemail] = useState('')
   const [number, setnumber] = useState('')
   const [gender, setgender] = useState('')
+  const [skill, setskill] = useState([])
   const [education, seteducation] = useState('')
 
 
@@ -47,7 +48,7 @@ function AddPosts() {
         number,
         gender,
         education,
-
+        skill
       })
       const { data, error, message } = response
       setLoading(false)
@@ -65,6 +66,21 @@ function AddPosts() {
       seterrorMessage("Server Error")
     }
   }
+
+
+  const handleMultiSelect = (value ) => {
+    console.log(skill)
+    console.log(value)
+
+    const isAny  = skill.filter((item)=> item === value)
+    if(isAny[0]){
+      console.log("FIND")
+      setskill(skill.filter((item)=> item !== value))
+    }else{
+      setskill([...skill,value])
+    }
+  }
+
   return (
     <div className="survey-box">
       {loading && <h2>Loading</h2>}
@@ -78,12 +94,16 @@ function AddPosts() {
         { key: 'type_3', text: 'mid', value: 'mid' }
       ]} selection onChange={({ value }) => seteducation(value)} />
 
-      <Dropdown text="skills level" fluid options={[
+      {/* <Dropdown text="skills level" fluid options={[
         { key: 11, text: 'react', value: 'react' },
         { key: 22, text: 'node', value: 'node' },
         { key: 33, text: 'typescript', value: 'typescript' },
-      ]} selection onChange={({ value }) => console.log(value)} />
-
+      ]} selection onChange={({ value }) => console.log(value)} /> */}
+          {JSON.stringify(skill)}
+          <select value={skill} onChange={(e)=>handleMultiSelect(e.target.value)}>
+            <option value="react">react</option>
+            <option value="node">node</option>          
+          </select>
       <RadioGender setgender={(gender) => setgender(gender)} />
 
       <Button content='Submit' onClick={() => handleOnClick()} />
