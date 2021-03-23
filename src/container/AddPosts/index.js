@@ -21,10 +21,10 @@ const skillsoptions = [
 
 function AddPosts() {
 
-  const [loading,setLoading] = useState()
-  const [isErorr,setisErorr] = useState()
-  const [errorMessage,seterrorMessage] = useState()
-  
+  const [loading, setLoading] = useState()
+  const [isErorr, setisErorr] = useState()
+  const [errorMessage, seterrorMessage] = useState()
+
   const [name, setName] = useState('')
   const [email, setemail] = useState('')
   const [number, setnumber] = useState('')
@@ -40,25 +40,25 @@ function AddPosts() {
     console.log(education)
 
     setLoading(true)
-    try{
-      const  response = await addSurvey({
+    try {
+      const response = await addSurvey({
         name,
         email,
         number,
         gender,
         education,
-        
+
       })
-      const  {data,error,message} =response
+      const { data, error, message } = response
       setLoading(false)
-      if(!error){
+      if (!error) {
         console.log(data)
         setisErorr(false)
-      }else{
+      } else {
         setisErorr(true)
         seterrorMessage(message)
       }
-    }catch(e){
+    } catch (e) {
       setLoading(false)
 
       setisErorr(true)
@@ -73,12 +73,17 @@ function AddPosts() {
       <Input type='text' label="Email" width="80%" margin="10px auto" name="email" value={email} handleOnChange={setemail} />
       <Input type='number' label="Number" width="80%" margin="10px auto" name="name" value={number} handleOnChange={setnumber} />
       <Dropdown text="education level" fluid options={[
-									{ key: 'type_1', text: 'big', value: 'big' },
-									{ key: 'type_2', text: 'small', value: 'small' },
-									{ key: 'type_3', text: 'imshow', value: 'imshow' },
-									{ key: 'type_4', text: 'rowProductSelect', value: 'rowProductSelect' }
-								]} selection onChange={({ value }) => seteducation(value)}  />
-      {/* <Dropdown text="skill" multiple fluid options={skillsoptions} selection onClick={e => pedning(e)} /> */}
+        { key: 'type_1', text: 'big', value: 'big' },
+        { key: 'type_2', text: 'small', value: 'small' },
+        { key: 'type_3', text: 'mid', value: 'mid' }
+      ]} selection onChange={({ value }) => seteducation(value)} />
+
+      <Dropdown text="skills level" fluid options={[
+        { key: 11, text: 'react', value: 'react' },
+        { key: 22, text: 'node', value: 'node' },
+        { key: 33, text: 'typescript', value: 'typescript' },
+      ]} selection onChange={({ value }) => console.log(value)} />
+
       <RadioGender setgender={(gender) => setgender(gender)} />
 
       <Button content='Submit' onClick={() => handleOnClick()} />
