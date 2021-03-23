@@ -25,9 +25,8 @@ const Input = ({
             textAlign: textAlign, 
             width: width
         }}>
-		<label style={{textAlign:"left !important"}}>{label}</label>
+		<label style={{textAlign:"left !important"}}>{label} </label>
 		<input
-            readOnly={readOnly}
             type={type}
             value={value}
             name={name}

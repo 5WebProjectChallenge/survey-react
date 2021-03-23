@@ -1,0 +1,10 @@
+.surveyBox{
+    margin: 20px auto;
+    display: flex;
+    flex-direction: column;
+    min-height: 200px;
+    padding: 20px;
+    width: 70%;
+    background: #aaa;
+    overflow: hidden;
+}

@@ -1,10 +1,10 @@
 import axios from 'axios'
 
 
-const getPosts = async (cursor = 1) => {
+export const getPosts = async (cursor = 1) => {
     try {
-        const response = await axios.get(`${REACT_APP_API}/getSurvey/${cursor}`)
-        return response
+        const response = await axios.get(`${process.env.REACT_APP_API}/user/getSurvey/${cursor}`)
+        return response.data
     } catch (e) {
         return {
             error: true,
@@ -13,12 +13,12 @@ const getPosts = async (cursor = 1) => {
     }
 }
 
-const addSurvey = async (data) => {
+export  const addSurvey = async (data) => {
     
     // validation pending
 
     try {
-        const response = await axios.post(`${REACT_APP_API}/addSurvey`,{
+        const response = await axios.post(`${process.env.REACT_APP_API}/user/addSurvey`,{
             ...data
         })
         return response
@@ -30,7 +30,3 @@ const addSurvey = async (data) => {
     }
 }
 
-export default {
-    getPosts,
-    addSurvey
-}
