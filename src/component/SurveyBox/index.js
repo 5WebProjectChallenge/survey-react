@@ -15,7 +15,7 @@ function SurveyBox({
   id
 }) {
   return (
-    <Grid item xs={12} lg={4}>
+    <Grid item xs={12} lg={4} data-item="true" id={"p"+id} >
 
       <Card className="surveyBox" variant="outlined">
 

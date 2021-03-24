@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 
-export const getPosts = async (cursor = 1) => {
+export const getPosts = async (cursor = Number.MAX_SAFE_INTEGER) => {
     try {
         const response = await axios.get(`${process.env.REACT_APP_API}/user/getSurvey/${cursor}`)
         return response.data
