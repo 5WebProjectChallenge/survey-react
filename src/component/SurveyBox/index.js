@@ -11,7 +11,7 @@ function SurveyBox({
   number = "Number not provided",
   educationLevel = "Education not provided",
   gender = "Gender not provided",
-  skills = "Skills not provided",
+  skillSets = "Skills not provided",
   id
 }) {
   return (
@@ -28,7 +28,7 @@ function SurveyBox({
           </Grid>
           <Grid item xs={12} >
 
-            <b>Skills :</b> {(skills && typeof (skills) === "object") ? skills.join(',') : skills || "No value"}
+            <b>skillSets :</b> {skillSets.map(skill => skill.skillName).join(',') }
           </Grid>
           <Grid item xs={12}>
             {gender || "Gender not provided"}

@@ -26,15 +26,15 @@ function ViewPosts() {
       setLoading(false)
       if (!error) {
         setdata([...data, ...newData])
-        const prevLastElement = document.querySelector('#p'+data[data.length -1  ].id)
-        console.log("prevLastElement",prevLastElement)
+        const prevLastElement = document.querySelector('#p' + data[data.length - 1].id)
+        console.log("prevLastElement", prevLastElement)
         prevLastElement.scrollIntoView();
         setisErorr(false)
       } else {
         setisErorr(true)
       }
     } catch (e) {
-      console.log("EXCEPTION",e)
+      console.log("EXCEPTION", e)
     }
   }
 
@@ -49,11 +49,11 @@ function ViewPosts() {
           <h1>Showing posts</h1>
         </Grid>
       </Box>
-      <Grid container spacing={3} justify='center'>
         <Box width="100%" height="80vh" overflow="hidden scroll" className="list">
-          {!loading && data && data.map(item => <SurveyBox  key={item.id} {...item} />)}
+        <Grid container spacing={3} justify='center'>
+          {!loading && data && data.map(item => <SurveyBox key={item.id} {...item} />)}
+          </Grid>
         </Box>…
-        </Grid>
       <CustomButton text='Load more' handleOnClick={() => handleOnLoadMore()} />
     </Grid>
   );
